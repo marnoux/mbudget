@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from 'react';
-import NavigationBar from '../Navbar/Navbar';
+import NavigationBar from '../Navbar/NavigationBar';
 
 interface Props {
 	title?: string;
@@ -9,7 +9,7 @@ interface Props {
 const Layout: FC<Props> = ({ title, children }) => {
 	return (
 		<>
-			<NavigationBar />
+			<NavigationBar title='mBudget' />
 		</>
 	);
 };
