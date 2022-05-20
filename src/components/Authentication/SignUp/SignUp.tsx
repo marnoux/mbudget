@@ -10,7 +10,7 @@ interface Values {
 
 const SignUp = () => {
 	return (
-		<Card style={{ width: '18rem' }}>
+		<Card className='pt-3' style={{ borderRadius: '2rem' }}>
 			<Card.Body>
 				<Formik
 					initialValues={{
@@ -50,7 +50,8 @@ const SignUp = () => {
 									type='email'
 								/>
 							</Form.Group>
-
+						</Stack>{' '}
+						<Stack gap={2} className='col-md-5 mx-auto pt-4'>
 							<Button type='submit'>Submit</Button>
 						</Stack>
 					</Form>

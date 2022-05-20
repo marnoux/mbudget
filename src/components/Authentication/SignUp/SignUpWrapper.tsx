@@ -6,11 +6,11 @@ const SignUpWrapper = () => {
 	return (
 		<Container>
 			<Row>
-				<Col xs></Col>
-				<Col xs={{ order: 12 }}>
+				<Col></Col>
+				<Col style={{ paddingTop: '2rem', minWidth: '320px' }}>
 					<SignUp />
 				</Col>
-				<Col xs={{ order: 1 }}></Col>
+				<Col></Col>
 			</Row>
 		</Container>
 	);
