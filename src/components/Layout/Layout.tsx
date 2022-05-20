@@ -1,15 +1,16 @@
-import React, { FC, ReactNode } from 'react';
-import NavigationBar from '../Navbar/NavigationBar';
-
-interface Props {
-	title?: string;
-	children?: ReactNode;
+import React, { FC } from 'react';
+import { Container } from 'react-bootstrap';
+import NavigationBar from '../Navigation/NavigationBar';
+interface LayoutProps {
+	children?: React.ReactNode;
+	appTitle: string;
 }
 
-const Layout: FC<Props> = ({ title, children }) => {
+const Layout: FC<LayoutProps> = ({ children, appTitle }) => {
 	return (
 		<>
-			<NavigationBar title='mBudget' />
+			<NavigationBar title={appTitle} />
+			<Container>{children}</Container>
 		</>
 	);
 };
