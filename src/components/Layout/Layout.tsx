@@ -10,7 +10,7 @@ const Layout: FC<LayoutProps> = ({ children, appTitle }) => {
 	return (
 		<>
 			<NavigationBar title={appTitle} />
-			<Container>{children}</Container>
+			<Container className='px-5'>{children}</Container>
 		</>
 	);
 };

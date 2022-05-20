@@ -1,9 +1,9 @@
 import { NextPage } from 'next';
-import SignUp from '../../components/Authentication/SignUp/SignUp';
 import React from 'react';
+import SignUpWrapper from '../../components/Authentication/SignUp/SignUpWrapper';
 
 const SignUpPage: NextPage = () => {
-	return <SignUp />;
+	return <SignUpWrapper />;
 };
 
 export default SignUpPage;
