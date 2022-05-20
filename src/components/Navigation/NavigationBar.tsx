@@ -1,6 +1,8 @@
 import React from 'react';
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
-import NavBarDropdown from './NavBarDropdown';
+import Link from 'next/link';
+import NavLink from '../UI/NavLink/NavLink';
+// import NavBarDropdown from './NavBarDropdown';
 
 type NavigationBarProps = {
 	title: string;
@@ -10,7 +12,9 @@ const NavigationBar = ({ title }: NavigationBarProps) => {
 	return (
 		<Navbar collapseOnSelect expand='lg' bg='dark' variant='dark'>
 			<Container>
-				<Navbar.Brand>{title}</Navbar.Brand>
+				<Link href='/'>
+					<Navbar.Brand>{title} </Navbar.Brand>
+				</Link>
 				<Navbar.Toggle aria-controls='responsive-navbar-nav' />
 				<Navbar.Collapse id='responsive-navbar-nav'>
 					<Nav className='me-auto'>
@@ -18,8 +22,8 @@ const NavigationBar = ({ title }: NavigationBarProps) => {
 						<Nav.Link>Transactions</Nav.Link>
 					</Nav>
 					<Nav>
-						<Nav.Link>Sign In</Nav.Link>
-						<Nav.Link>My Account</Nav.Link>
+						<NavLink title={'Sign In'} href={'/SignIn'}></NavLink>
+						<NavLink title={'Sign Up'} href={'/SignUp'}></NavLink>
 					</Nav>
 				</Navbar.Collapse>
 			</Container>
