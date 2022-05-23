@@ -13,8 +13,6 @@ const Home: NextPage = () => {
 	useEffect(() => {
 		setSession(supabase.auth.session());
 
-		console.log('🚀 ~ file: index.tsx ~ line 12 ~ session', session);
-
 		supabase.auth.onAuthStateChange((_event: any, session: any) => {
 			setSession(session);
 		});
