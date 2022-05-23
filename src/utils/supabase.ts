@@ -1,4 +1,4 @@
-import { createClient } from '@supabase/supabase-js';
+import { createClient } from '../../node_modules/@supabase/supabase-js';
 import { isNullString } from './general';
 
 const supabaseUrl = isNullString(process.env.NEXT_PUBLIC_SUPABASE_URL);

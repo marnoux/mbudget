@@ -12,12 +12,10 @@ interface UserData {
 }
 
 const Account = ({ session }: AccountProps) => {
-	const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState(false);
 	const [username, setUsername] = useState<UserData | null | any>(null);
 	const [website, setWebsite] = useState<UserData | null | any>(null);
 	const [avatar_url, setAvatarUrl] = useState<UserData | null | any>(null);
-
-
 
 	async function updateProfile({ username, website, avatar_url }: UserData) {
 		try {
