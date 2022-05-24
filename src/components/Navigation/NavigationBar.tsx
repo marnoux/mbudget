@@ -22,8 +22,7 @@ const NavigationBar = ({ title }: NavigationBarProps) => {
 						<Nav.Link>Transactions</Nav.Link>
 					</Nav>
 					<Nav>
-						<NavLink title={'Sign In'} href={'/SignIn'}></NavLink>
-						<NavLink title={'Sign Up'} href={'/SignUp'}></NavLink>
+						<NavLink title={'Sign In'} href={'/auth'}></NavLink>
 					</Nav>
 				</Navbar.Collapse>
 			</Container>
