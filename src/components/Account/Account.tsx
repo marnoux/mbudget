@@ -79,7 +79,7 @@ const Account = ({ session }: AccountProps) => {
 	};
 
 	return (
-		<div className='form-widget'>
+		<>
 			<Avatar
 				url={avatar_url}
 				size={200}
@@ -126,7 +126,7 @@ const Account = ({ session }: AccountProps) => {
 					Sign Out
 				</button>
 			</div>
-		</div>
+		</>
 	);
 };
 
