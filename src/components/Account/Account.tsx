@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../../utils/supabase';
+import Avatar from './Avatar';
 
 interface AccountProps {
 	session: any;
@@ -16,6 +17,37 @@ const Account = ({ session }: AccountProps) => {
 	const [username, setUsername] = useState<UserData | null | any>(null);
 	const [website, setWebsite] = useState<UserData | null | any>(null);
 	const [avatar_url, setAvatarUrl] = useState<UserData | null | any>(null);
+
+	useEffect(() => {
+		getProfile();
+	}, [session]);
+
+	async function getProfile() {
+		try {
+			setLoading(true);
+			const user = supabase.auth.user();
+
+			let { data, error, status } = await supabase
+				.from('profiles')
+				.select(`username, website, avatar_url`)
+				.eq('id', user?.id)
+				.single();
+
+			if (error && status !== 406) {
+				throw error;
+			}
+
+			if (data) {
+				setUsername(data.username);
+				setWebsite(data.website);
+				setAvatarUrl(data.avatar_url);
+			}
+		} catch (error: any) {
+			alert(error.message);
+		} finally {
+			setLoading(false);
+		}
+	}
 
 	async function updateProfile({ username, website, avatar_url }: UserData) {
 		try {
@@ -46,6 +78,14 @@ const Account = ({ session }: AccountProps) => {
 
 	return (
 		<div className='form-widget'>
+			<Avatar
+				url={avatar_url}
+				size={150}
+				onUpload={(url) => {
+					setAvatarUrl(url);
+					updateProfile({ username, website, avatar_url: url });
+				}}
+			/>
 			<div>
 				<label htmlFor='email'>Email</label>
 				<input id='email' type='text' value={session.user.email} disabled />
