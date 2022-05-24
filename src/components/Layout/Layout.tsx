@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Container } from 'react-bootstrap';
-import NavigationBar from '../Navigation/NavigationBar';
+import NavigationBar from '../UI/Navigation/NavigationBar';
 interface LayoutProps {
 	children?: React.ReactNode;
 	appTitle: string;

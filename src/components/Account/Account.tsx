@@ -22,7 +22,7 @@ const Account = ({ session }: AccountProps) => {
 		getProfile();
 	}, [session]);
 
-	async function getProfile() {
+	const getProfile = async () => {
 		try {
 			setLoading(true);
 			const user = supabase.auth.user();
@@ -47,11 +47,12 @@ const Account = ({ session }: AccountProps) => {
 		} finally {
 			setLoading(false);
 		}
-	}
+	};
 
-	async function updateProfile({ username, website, avatar_url }: UserData) {
+	const updateProfile = async ({ username, website, avatar_url }: UserData) => {
 		try {
 			setLoading(true);
+
 			const user = supabase.auth.user();
 
 			const updates = {
@@ -74,13 +75,13 @@ const Account = ({ session }: AccountProps) => {
 		} finally {
 			setLoading(false);
 		}
-	}
+	};
 
 	return (
 		<div className='form-widget'>
 			<Avatar
 				url={avatar_url}
-				size={150}
+				size={200}
 				onUpload={(url) => {
 					setAvatarUrl(url);
 					updateProfile({ username, website, avatar_url: url });

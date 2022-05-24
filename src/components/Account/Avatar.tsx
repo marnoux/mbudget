@@ -63,9 +63,8 @@ const Avatar = ({ url, size, onUpload }: AvatarProps) => {
 					src={avatarUrl}
 					alt='Avatar'
 					className='avatar image'
-					width={100}
-					height={100}
-					style={{ height: size, width: size }}
+					width={size}
+					height={size}
 				/>
 			) : (
 				<div className='avatar no-image' style={{ height: size, width: size }} />

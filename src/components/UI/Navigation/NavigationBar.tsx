@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import Link from 'next/link';
-import NavLink from '../UI/NavLink/NavLink';
+import NavLink from '../NavLink/NavLink';
 // import NavBarDropdown from './NavBarDropdown';
 
 type NavigationBarProps = {
