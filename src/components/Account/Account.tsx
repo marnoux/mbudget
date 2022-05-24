@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { UserSessionField } from '../../types/user';
 import { supabase } from '../../utils/supabase';
 import Avatar from './Avatar';
 
@@ -7,9 +8,9 @@ interface AccountProps {
 }
 
 interface UserData {
-	username: string | ReadonlyArray<string> | number | undefined;
-	website: string | ReadonlyArray<string> | number | undefined;
-	avatar_url: string | ReadonlyArray<string> | number | undefined;
+	username: UserSessionField;
+	website: UserSessionField;
+	avatar_url: UserSessionField;
 }
 
 const Account = ({ session }: AccountProps) => {
