@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
+import { Button, Form, Stack } from 'react-bootstrap';
 import { supabase } from '../../utils/supabase';
 
 interface AvatarProps {
@@ -11,6 +12,7 @@ interface AvatarProps {
 const Avatar = ({ url, size, onUpload }: AvatarProps) => {
 	const [avatarUrl, setAvatarUrl] = useState<String | null>(null);
 	const [uploading, setUploading] = useState(false);
+	const [update, setUpdate] = useState(false);
 
 	useEffect(() => {
 		if (url) downloadImage(url);
@@ -52,11 +54,16 @@ const Avatar = ({ url, size, onUpload }: AvatarProps) => {
 			alert(error.message);
 		} finally {
 			setUploading(false);
+			setUpdate(false);
 		}
 	};
 
+	const onUpdateChange = () => {
+		setUpdate(!update);
+	};
+
 	return (
-		<div>
+		<Stack gap={3} className='col-md-6 mx-auto'>
 			{avatarUrl ? (
 				<Image
 					// @ts-ignore
@@ -69,23 +76,19 @@ const Avatar = ({ url, size, onUpload }: AvatarProps) => {
 			) : (
 				<div className='avatar no-image' style={{ height: size, width: size }} />
 			)}
-			<div style={{ width: size }}>
-				<label className='button primary block' htmlFor='single'>
-					{uploading ? 'Uploading ...' : 'Upload'}
-				</label>
-				<input
-					style={{
-						visibility: 'hidden',
-						position: 'absolute',
-					}}
-					type='file'
-					id='single'
-					accept='image/*'
-					onChange={uploadAvatar}
-					disabled={uploading}
-				/>
-			</div>
-		</div>
+			{!update && <Button onClick={onUpdateChange}>New Avatar</Button>}
+			{update && (
+				<Form.Group controlId='single'>
+					<Form.Control
+						type='file'
+						id='single'
+						accept='image/*'
+						onChange={uploadAvatar}
+						disabled={uploading}
+					/>
+				</Form.Group>
+			)}
+		</Stack>
 	);
 };
 

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Button, ButtonGroup, Form, Stack } from 'react-bootstrap';
 import { UserSessionField } from '../../types/user';
 import { supabase } from '../../utils/supabase';
 import Avatar from './Avatar';
@@ -79,54 +80,53 @@ const Account = ({ session }: AccountProps) => {
 	};
 
 	return (
-		<>
-			<Avatar
-				url={avatar_url}
-				size={200}
-				onUpload={(url) => {
-					setAvatarUrl(url);
-					updateProfile({ username, website, avatar_url: url });
-				}}
-			/>
-			<div>
-				<label htmlFor='email'>Email</label>
-				<input id='email' type='text' value={session.user.email} disabled />
-			</div>
-			<div>
-				<label htmlFor='username'>Name</label>
-				<input
-					id='username'
-					type='text'
-					value={username || ''}
-					onChange={(e) => setUsername(e.target.value)}
+		<Stack gap={4} className='col-md-5 mx-auto'>
+			<h1>Profile</h1>
+			<Form>
+				<Avatar
+					url={avatar_url}
+					size={200}
+					onUpload={(url) => {
+						setAvatarUrl(url);
+						updateProfile({ username, website, avatar_url: url });
+					}}
 				/>
-			</div>
-			<div>
-				<label htmlFor='website'>Website</label>
-				<input
-					id='website'
-					type='website'
-					value={website || ''}
-					onChange={(e) => setWebsite(e.target.value)}
-				/>
-			</div>
+				<Form.Group className='pb-2'>
+					<Form.Label htmlFor='email'>Email</Form.Label>
+				</Form.Group>
+				<Form.Group className='pb-2'>
+					<Form.Control id='email' type='text' value={session.user.email} disabled />
+				</Form.Group>
+				<Form.Group className='pb-2'>
+					<Form.Label htmlFor='username'>Name</Form.Label>
+					<Form.Control
+						id='username'
+						type='text'
+						value={username || ''}
+						onChange={(e) => setUsername(e.target.value)}
+					/>
+				</Form.Group>
+				<Form.Group className='pb-2'>
+					<Form.Label htmlFor='website'>Website</Form.Label>
+					<Form.Control
+						id='website'
+						type='website'
+						value={website || ''}
+						onChange={(e) => setWebsite(e.target.value)}
+					/>
+				</Form.Group>
+			</Form>
 
-			<div>
-				<button
-					className='button block primary'
-					onClick={() => updateProfile({ username, website, avatar_url })}
-					disabled={loading}
-				>
-					{loading ? 'Loading ...' : 'Update'}
-				</button>
-			</div>
+			<Button
+				className='button block primary'
+				onClick={() => updateProfile({ username, website, avatar_url })}
+				disabled={loading}
+			>
+				{loading ? 'Loading ...' : 'Update'}
+			</Button>
 
-			<div>
-				<button className='button block' onClick={() => supabase.auth.signOut()}>
-					Sign Out
-				</button>
-			</div>
-		</>
+			<Button onClick={() => supabase.auth.signOut()}>Sign Out</Button>
+		</Stack>
 	);
 };
 
