@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Col, Container, Form, Row, Stack } from 'react-bootstrap';
+import { Button, Form, Stack } from 'react-bootstrap';
 import { supabase } from '../../utils/supabase';
 
 const Login = () => {
@@ -17,11 +17,11 @@ const Login = () => {
 		} finally {
 			setLoading(false);
 		}
-	};	
+	};
 
 	return (
 		<Stack gap={4} className='col-md-6 mx-auto'>
-			<h1>Supabase + Next.js</h1>
+			<h1>Magic Link</h1>
 			<p className='description'>Sign in via magic link with your email below</p>
 			<Form.Control
 				type='email'

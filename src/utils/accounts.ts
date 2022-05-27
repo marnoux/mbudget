@@ -1,8 +1,8 @@
+import { createContext } from 'react';
 import { supabase } from './supabase';
 
 export const getProfile = async () => {
 	try {
-		// setLoading(true);
 		const user = supabase.auth.user();
 
 		let { data, error, status } = await supabase
@@ -16,13 +16,11 @@ export const getProfile = async () => {
 		}
 
 		if (data) {
-			console.log('🚀 ~ file: accounts.ts ~ line 19 ~ getProfile ~ data', data);
-			return data;
+			const UserContext = createContext(data);
 		}
 	} catch (error: any) {
 		alert(error.message);
+	} finally {
+		
 	}
-	// finally {
-	// setLoading(false);
-	// }
 };

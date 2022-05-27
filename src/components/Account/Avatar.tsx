@@ -1,11 +1,11 @@
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import { Button, Form, Stack } from 'react-bootstrap';
+import { Button, CloseButton, Form, Row, Stack } from 'react-bootstrap';
 import { supabase } from '../../utils/supabase';
 
 interface AvatarProps {
 	url: string;
-	size: any;
+	size: number;
 	onUpload: (url: string) => void;
 }
 
@@ -63,29 +63,35 @@ const Avatar = ({ url, size, onUpload }: AvatarProps) => {
 	};
 
 	return (
-		<Stack gap={3} className='col-md-6 mx-auto'>
+		<Stack gap={3} className='col-md-7 mx-auto'>
 			{avatarUrl ? (
-				<Image
-					// @ts-ignore
-					src={avatarUrl}
-					alt='Avatar'
-					className='avatar image'
-					width={size}
-					height={size}
-				/>
+				// Image with may not render properly as a child of a flex container. Consider wrapping the image with a div to configure the width.
+				<div>
+					<Image
+						// @ts-ignore
+						src={avatarUrl}
+						alt='Avatar'
+						className='avatar image'
+						width={size}
+						height={size}
+						layout='responsive'
+					/>
+				</div>
 			) : (
 				<div className='avatar no-image' style={{ height: size, width: size }} />
 			)}
 			{!update && <Button onClick={onUpdateChange}>New Avatar</Button>}
 			{update && (
 				<Form.Group controlId='single'>
-					<Form.Control
-						type='file'
-						id='single'
-						accept='image/*'
-						onChange={uploadAvatar}
-						disabled={uploading}
-					/>
+					<Stack direction='horizontal' gap={2}>
+						<Form.Control
+							type='file'
+							accept='image/*'
+							onChange={uploadAvatar}
+							disabled={uploading}
+						/>
+						<CloseButton onClick={onUpdateChange} />
+					</Stack>
 				</Form.Group>
 			)}
 		</Stack>
