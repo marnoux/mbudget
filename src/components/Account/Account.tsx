@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button, ButtonGroup, Form, Stack } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 import { UserSessionField } from '../../types/user';
 import { supabase } from '../../utils/supabase';
 import Avatar from './Avatar';
@@ -19,6 +20,8 @@ const Account = ({ session }: AccountProps) => {
 	const [username, setUsername] = useState<UserData | null | any>(null);
 	const [website, setWebsite] = useState<UserData | null | any>(null);
 	const [avatar_url, setAvatarUrl] = useState<UserData | null | any>(null);
+
+	const user = useSelector((state: any) => state.user.value);
 
 	useEffect(() => {
 		getProfile();
